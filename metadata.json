@@ -1,0 +1,6 @@
+{
+  "name": "Fluxo Kanban",
+  "description": "Agendamento e controle de tarefas em quadro Kanban com colunas Pendente, Iniciado e Concluído.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

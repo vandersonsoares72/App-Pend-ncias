@@ -1,0 +1,96 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidKanbanTask(data, userId) {
+      return data.userId is string &&
+             data.userId == userId &&
+             data.userId == request.auth.uid &&
+             data.userId.size() >= 1 &&
+             data.userId.size() <= 128 &&
+             data.title is string &&
+             data.title.size() >= 1 &&
+             data.title.size() <= 120 &&
+             data.description is string &&
+             data.description.size() <= 500 &&
+             data.status is string &&
+             data.status in ['PENDENTE', 'INICIADO', 'CONCLUIDO'] &&
+             data.priority is string &&
+             data.priority in ['BAIXA', 'MEDIA', 'ALTA'] &&
+             data.category is string &&
+             data.category.size() >= 1 &&
+             data.category.size() <= 40 &&
+             (!('scheduledAt' in data) || data.scheduledAt == null || data.scheduledAt is timestamp) &&
+             data.createdAt is timestamp &&
+             data.createdAt <= request.time &&
+             data.updatedAt is timestamp &&
+             data.updatedAt <= request.time;
+    }
+
+    match /users/{userId}/tasks/{taskId} {
+      allow get: if isSignedIn() && isValidId(userId) && isValidId(taskId) && isOwner(userId);
+      allow list: if isSignedIn() && isValidId(userId) && isOwner(userId);
+
+      allow create: if isSignedIn() &&
+                       isValidId(userId) &&
+                       isValidId(taskId) &&
+                       isOwner(userId) &&
+                       incoming().keys().hasAll([
+                         'userId', 'title', 'description', 'status',
+                         'priority', 'category', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'title', 'description', 'status',
+                         'priority', 'category', 'scheduledAt', 'createdAt', 'updatedAt'
+                       ]) &&
+                       isValidKanbanTask(incoming(), userId);
+
+      allow update: if isSignedIn() &&
+                       isValidId(userId) &&
+                       isValidId(taskId) &&
+                       isOwner(userId) &&
+                       isValidKanbanTask(incoming(), userId) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'title', 'description', 'status',
+                         'priority', 'category', 'scheduledAt', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       (
+                         // Action 1: Quick Kanban status column transition
+                         incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']) ||
+                         // Action 2: Full task details / schedule edit
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'title', 'description', 'status', 'priority',
+                           'category', 'scheduledAt', 'updatedAt'
+                         ])
+                       );
+
+      allow delete: if isSignedIn() && isValidId(userId) && isValidId(taskId) && isOwner(userId);
+    }
+  }
+}

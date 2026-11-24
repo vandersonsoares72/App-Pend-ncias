@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Fluxo Kanban</string>
+
+    <!-- Autenticação -->
+    <string name="auth_tagline">Organize seu fluxo com clareza</string>
+    <string name="auth_subtitle">Agende tarefas e acompanhe cada etapa entre Pendente, Iniciado e Concluído, sincronizado na nuvem.</string>
+    <string name="auth_sign_in_google">Entrar com o Google</string>
+    <string name="auth_signing_in">Conectando…</string>
+    <string name="auth_pillar_pending">Pendente</string>
+    <string name="auth_pillar_started">Iniciado</string>
+    <string name="auth_pillar_done">Concluído</string>
+    <string name="auth_welcome_art_desc">Ilustração de quadro Kanban com três colunas</string>
+    <string name="auth_error_missing_config">Configuração do Login com Google ausente.</string>
+    <string name="auth_error_unexpected_credential">Tipo de credencial inesperado.</string>
+    <string name="auth_error_generic">Não foi possível entrar. Tente novamente.</string>
+
+    <!-- Navegação e Cabeçalho -->
+    <string name="nav_board">Quadro</string>
+    <string name="nav_schedule">Agenda</string>
+    <string name="header_progress_label">%1$d de %2$d concluídas</string>
+    <string name="header_search_desc">Buscar tarefas</string>
+    <string name="header_close_search_desc">Fechar busca</string>
+    <string name="header_search_placeholder">Buscar por título, nota ou categoria…</string>
+    <string name="header_layout_compact_desc">Alternar entre visão focada e visão geral das colunas</string>
+    <string name="header_account_desc">Conta e sair</string>
+    <string name="fab_new_task">Nova tarefa</string>
+
+    <!-- Status Kanban -->
+    <string name="status_pending">Pendente</string>
+    <string name="status_started">Iniciado</string>
+    <string name="status_done">Concluído</string>
+
+    <!-- Prioridades -->
+    <string name="priority_all">Todas</string>
+    <string name="priority_high">Alta</string>
+    <string name="priority_medium">Média</string>
+    <string name="priority_low">Baixa</string>
+    <string name="filter_overdue_today">Hoje / Atrasadas</string>
+
+    <!-- Categorias -->
+    <string name="cat_work">Trabalho</string>
+    <string name="cat_personal">Pessoal</string>
+    <string name="cat_study">Estudos</string>
+    <string name="cat_project">Projeto</string>
+    <string name="cat_finance">Financeiro</string>
+    <string name="cat_health">Saúde</string>
+
+    <!-- Ações nos Cartões -->
+    <string name="action_start">Iniciar</string>
+    <string name="action_back_pending">Pendente</string>
+    <string name="action_complete">Concluir</string>
+    <string name="action_reopen">Retomar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_create">Lançar tarefa</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="badge_overdue">Atrasada</string>
+    <string name="badge_today">Hoje</string>
+    <string name="badge_tomorrow">Amanhã</string>
+    <string name="badge_no_date">Sem data</string>
+
+    <!-- Estados Vazios -->
+    <string name="empty_pending_title">Nenhuma tarefa pendente</string>
+    <string name="empty_pending_body">Toque em Nova tarefa para lançar e agendar seu próximo compromisso.</string>
+    <string name="empty_started_title">Nada em andamento</string>
+    <string name="empty_started_body">Mova uma tarefa pendente para Iniciado para acompanhar seu foco atual.</string>
+    <string name="empty_done_title">Nenhuma concluída ainda</string>
+    <string name="empty_done_body">Finalize tarefas iniciadas para celebrar seu progresso aqui.</string>
+    <string name="empty_schedule_title">Agenda livre</string>
+    <string name="empty_schedule_body">Lance tarefas com data e hora para vê-las organizadas cronologicamente.</string>
+
+    <!-- Seções da Agenda -->
+    <string name="schedule_section_overdue">Atrasadas</string>
+    <string name="schedule_section_today">Para hoje</string>
+    <string name="schedule_section_upcoming">Próximos dias</string>
+    <string name="schedule_section_unscheduled">Sem agendamento</string>
+    <string name="schedule_section_done">Concluídas</string>
+
+    <!-- Formulário de Tarefa -->
+    <string name="sheet_title_new">Lançar nova tarefa</string>
+    <string name="sheet_title_edit">Editar tarefa</string>
+    <string name="field_title_label">Título da tarefa</string>
+    <string name="field_title_placeholder">Ex.: Enviar relatório mensal</string>
+    <string name="field_title_error">Informe um título entre 1 e 120 caracteres.</string>
+    <string name="field_desc_label">Descrição (opcional)</string>
+    <string name="field_desc_placeholder">Detalhes, checklist ou observações…</string>
+    <string name="field_status_label">Coluna Kanban</string>
+    <string name="field_priority_label">Prioridade</string>
+    <string name="field_category_label">Categoria</string>
+    <string name="field_schedule_label">Agendamento</string>
+    <string name="schedule_pick_date">Escolher data</string>
+    <string name="schedule_pick_time">Horário</string>
+    <string name="schedule_clear">Limpar</string>
+    <string name="schedule_quick_today">Hoje</string>
+    <string name="schedule_quick_tomorrow">Amanhã</string>
+    <string name="schedule_quick_next_week">+7 dias</string>
+    <string name="confirm_delete_title">Excluir tarefa?</string>
+    <string name="confirm_delete_body">Esta tarefa será removida permanentemente do seu quadro Kanban.</string>
+
+    <!-- Conta -->
+    <string name="account_dialog_title">Sua conta</string>
+    <string name="account_signed_in_as">Conectado como</string>
+    <string name="account_sign_out">Sair da conta</string>
+    <string name="account_close">Fechar</string>
+
+    <!-- Mensagens de feedback -->
+    <string name="msg_task_created">Tarefa lançada no quadro</string>
+    <string name="msg_task_updated">Tarefa atualizada</string>
+    <string name="msg_task_deleted">Tarefa excluída</string>
+    <string name="msg_moved_pending">Movida para Pendente</string>
+    <string name="msg_moved_started">Movida para Iniciado</string>
+    <string name="msg_moved_done">Tarefa concluída</string>
+    <string name="error_load_tasks">Erro ao carregar suas tarefas.</string>
+    <string name="error_save_task">Não foi possível salvar a tarefa. Tente novamente.</string>
+</resources>

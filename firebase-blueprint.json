@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "KanbanTask": {
+      "title": "KanbanTask",
+      "description": "A scheduled user task tracked across Kanban workflow columns (PENDENTE, INICIADO, CONCLUIDO).",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated owner UID matching the parent user document."
+        },
+        "title": {
+          "type": "string",
+          "description": "Short task title (1 to 120 characters)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional detailed task notes (0 to 500 characters)."
+        },
+        "status": {
+          "type": "string",
+          "description": "Kanban workflow stage.",
+          "enum": ["PENDENTE", "INICIADO", "CONCLUIDO"]
+        },
+        "priority": {
+          "type": "string",
+          "description": "Task priority level.",
+          "enum": ["BAIXA", "MEDIA", "ALTA"]
+        },
+        "category": {
+          "type": "string",
+          "description": "Category label for task organization (1 to 40 characters)."
+        },
+        "scheduledAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional scheduled due date and time stored as a Firestore Timestamp."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Immutable creation timestamp written via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification timestamp written via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "description",
+        "status",
+        "priority",
+        "category",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/KanbanTask" },
+      "description": "User-scoped Kanban tasks collection isolated per authenticated Firebase user."
+    }
+  }
+}
